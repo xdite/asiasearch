@@ -6,13 +6,13 @@ Description
 Yahoo Asia Search provides user an interface for automated semantic analysis and language treatment.
 
 You must [register first](http://developer.yahoo.com/wsregapp/index.php) to get API key.
-Then [activate it](http://asia.search.yahooapis.com/v1/AuthBootUp.php?appid=APIKEY).
+Then [activate it](http://asia.search.yahooapis.com/cas/v1/AuthBootUp.php?appid=APIKEY).
 
-You can get more detail on [Officical Site] (http://tw.developer.yahoo.com/cas/).
+You can get more detail on [Officical Site] (http://tw.developer.yahoo.com/cas/api.php).
 
 Author
 ------------------
 
-Author: xdite (xdite@handlino.com)
+Author: xdite (xuite.joke@gmail.com)
 
 Blog: http://blog.xdite.net
