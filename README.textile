@@ -11,7 +11,7 @@ You can get more detail on [Officical Site] (http://tw.developer.yahoo.com/cas/a
 
 h2. Install
 
-<pre><code>gem install asiasearch</code></pre>
+<pre><code>rails g asiasearch</code></pre>
 
 It will automate generate indextank.yml to your config/ directory. Please fill up your information.*
 
