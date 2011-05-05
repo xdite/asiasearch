@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "asiasearch"
-  s.version     = "0.0.2"
+  s.version     = "0.0.3"
   s.date        = "2011-05-05"
   s.authors     = ["Yi-Ting Cheng"]
   s.email       = ["xuite.joke@gmail.com"]
