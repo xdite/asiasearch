@@ -3,42 +3,67 @@ require 'hpricot'
 require 'mechanize'
 require 'json'
 
-class AsiaSearch
-  attr_reader :appid, :content, :threshold, :maxnum
-  def initialize
-    @paths = {
-      :ke         => "http://asia.search.yahooapis.com/cas/v1/ke",
-      :ws         => "http://asia.search.yahooapis.com/cas/v1/ws",
-    }
-  end
-  
-  def ws(appid, content)
-    agent = WWW::Mechanize.new
-    params = {
-      :appid => appid,
-      :content => content,
-      :format => "json"
-    }
+module AsiaSearch
+  class Error < StandardError; end
 
-    agent.post(@paths[:ws],params)
-    data = agent.current_page.body
-    result = JSON.parse(data)
-    return result
+  def self.config(environment=RAILS_ENV)
+    @config ||= {}
+    @config[environment] ||= YAML.load(File.open(RAILS_ROOT + '/config/asiasearch.yml').read)[environment]
   end
-  
-  def ke(appid,content,threshold=30,maxnum=10)
-    agent = WWW::Mechanize.new
-    params = {
-      :appid => appid,
-      :content => content,
-      :threshold => threshold,
-      :maxnum => maxnum,
-      :format => "json"
-    }
 
-    agent.post(@paths[:ke],params)
-    data = agent.current_page.body
-    result = JSON.parse(data)
-    return result
+  module Base
+    extend ActiveSupport::Concern
+    
+    included do
+    end
+    
+    module ClassMethods
+      def has_keyword(column_name, options = {})
+        define_method "keyword_content" do
+          self.send(column_name)
+        end
+      end
+    end
+
+    module InstanceMethods
+      attr_reader :threshold, :maxnum
+      
+      KE = "http://asia.search.yahooapis.com/cas/v1/ke"
+      WS = "http://asia.search.yahooapis.com/cas/v1/ws"
+      
+      def initialize
+      end
+
+      def ws
+        params = {
+          :content => keyword_content,
+        }
+        result = request(WS, params)
+        return result
+      end
+
+      def ke(maxnum=5,threshold=30)
+        params = {
+          :content => keyword_content,
+          :threshold => threshold,
+          :maxnum => maxnum,
+        }
+        result = request(KE, params)
+        return result
+      end
+
+      def request(path, params)
+        agent = Mechanize.new
+        appid = AsiaSearch.config["appid"]
+        
+        params.merge!({:appid => appid, :format => "json" })
+        
+        agent.post(path,params)
+        data = agent.current_page.body
+        result = JSON.parse(data)
+        return result
+      end
+      
+    end
   end
 end

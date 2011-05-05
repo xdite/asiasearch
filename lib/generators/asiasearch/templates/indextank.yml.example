@@ -1,0 +1,8 @@
+development: &DEV
+   appid: "key here"
+test:
+   <<: *DEV
+staging:
+   <<: *DEV
+production:
+   <<: *DEV

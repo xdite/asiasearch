@@ -1,17 +1,21 @@
 Gem::Specification.new do |s|
   s.name        = "asiasearch"
-  s.version     = "0.0.1"
-  s.date        = "2009-02-06"
+  s.version     = "0.0.2"
+  s.date        = "2011-05-05"
   s.authors     = ["Yi-Ting Cheng"]
   s.email       = ["xuite.joke@gmail.com"]
   s.homepage    = "https://github.com/xdite/asiasearch"
   s.summary     = "Yahoo Asia Search provides user an interface for automated semantic analysis and language treatment."
   s.description = "Yahoo Asia Search provides user an interface for automated semantic analysis and language treatment."
 
-  s.add_dependency('hpricot')
+ 
   s.add_dependency('json_pure')
   s.add_dependency('mechanize')
 
-  s.files = Dir.glob("{lib}/**/*") + %w(README.mkdn) # 只有列在這裡的檔案會打包到 Gem package 裡面。
+  s.files         = `git ls-files`.split("\n")
+  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.require_paths = ["lib"]
+  
   
 end
