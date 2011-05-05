@@ -1,0 +1,55 @@
+h1. Yahoo Asia Search a.k.a Yahoo!搜尋『斷章取義』 
+========
+
+h2.Description
+
+Yahoo Asia Search provides user an interface for automated semantic analysis and language treatment.
+
+You must [register first](http://developer.yahoo.com/wsregapp/index.php) to get API key.
+Then [activate it](http://asia.search.yahooapis.com/cas/v1/AuthBootUp.php?appid=APIKEY).
+
+You can get more detail on [Officical Site] (http://tw.developer.yahoo.com/cas/api.php).
+
+h2. Install
+
+<pre><code>gem install asiasearch</code></pre>
+
+It will automate generate indextank.yml to your config/ directory. Please fill up your information.*
+
+*2. Include AsiaSearch::Base in your model
+
+<pre>
+<code>
+class Topic < ActiveRecord::Base
+  include Railstank::Search
+  has_keyword :content
+end
+</code>
+</pre>
+
+3. How to get keyword
+
+<pre>
+<code>
+Topic.last.ke(5)
+</code>
+</pre>
+
+It will return array.
+
+
+h2. Contributing to Railstank
+ 
+* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
+* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
+* Fork the project
+* Start a feature/bugfix branch
+* Commit and push until you are happy with your contribution
+* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
+* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+
+h2. Copyright
+
+Copyright (c) 2011 xdite(xuite.joke@gmail.com) See LICENSE.txt for
+further details.
+
