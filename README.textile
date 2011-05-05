@@ -1,7 +1,6 @@
 h1. Yahoo Asia Search a.k.a Yahoo!搜尋『斷章取義』 
-========
 
-h2.Description
+h2. Description
 
 Yahoo Asia Search provides user an interface for automated semantic analysis and language treatment.
 
@@ -36,6 +35,11 @@ Topic.last.ke(5)
 </pre>
 
 It will return array.
+
+<pre>
+<code>
+     => [{"token"=>"暗棋", "score"=>181.203937}, {"token"=>"下棋", "score"=>167.834379}, {"token"=>"iphone", "score"=>139.64361}, {"token"=>"網路連線", "score"=>137.115998}, {"token"=>"遊戲", "score"=>123.237589}, {"token"=>"玩家", "score"=>110.649053}, {"token"=>"app", "score"=>80.2954323}, {"token"=>"對手", "score"=>70.3604531}, {"token"=>"雙人", "score"=>69.4245914}, {"token"=>"好友", "score"=>64.2127734}, {"token"=>"比賽", "score"=>64.1604035}, {"token"=>"網路", "score"=>62.0883974}, {"token"=>"對決", "score"=>50.1022393}, {"token"=>"連線", "score"=>50.0287451}, {"token"=>"到期", "score"=>50.0128105}, {"token"=>"模式", "score"=>49.8294466}, {"token"=>"利用", "score"=>49.1433447}, {"token"=>"提供", "score"=>48.9973186}, {"token"=>"game", "score"=>48.9104876}, {"token"=>"online", "score"=>45.9753276}] 
+</pre>
 
 
 h2. Contributing to Railstank
