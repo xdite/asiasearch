@@ -1,5 +1,3 @@
-require 'rubygems'
-require 'hpricot'
 require 'mechanize'
 require 'json'
 
