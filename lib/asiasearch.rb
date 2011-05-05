@@ -29,8 +29,6 @@ module AsiaSearch
       KE = "http://asia.search.yahooapis.com/cas/v1/ke"
       WS = "http://asia.search.yahooapis.com/cas/v1/ws"
       
-      def initialize
-      end
 
       def ws
         params = {
