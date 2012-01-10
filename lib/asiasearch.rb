@@ -4,17 +4,17 @@ require 'json'
 module AsiaSearch
   class Error < StandardError; end
 
-  def self.config(environment=RAILS_ENV)
+  def self.config(environment=Rails.env)
     @config ||= {}
-    @config[environment] ||= YAML.load(File.open(RAILS_ROOT + '/config/asiasearch.yml').read)[environment]
+    @config[environment] ||= YAML.load(File.open('config/asiasearch.yml').read)[environment]
   end
 
   module Base
     extend ActiveSupport::Concern
-    
+
     included do
     end
-    
+
     module ClassMethods
       def has_keyword(column_name, options = {})
         define_method "keyword_content" do
@@ -25,10 +25,10 @@ module AsiaSearch
 
     module InstanceMethods
       attr_reader :threshold, :maxnum
-      
+
       KE = "http://asia.search.yahooapis.com/cas/v1/ke"
       WS = "http://asia.search.yahooapis.com/cas/v1/ws"
-      
+
 
       def ws
         params = {
@@ -51,15 +51,15 @@ module AsiaSearch
       def request(path, params)
         agent = Mechanize.new
         appid = AsiaSearch.config["appid"]
-        
+
         params.merge!({:appid => appid, :format => "json" })
-        
+
         agent.post(path,params)
         data = agent.current_page.body
         result = JSON.parse(data)
         return result
       end
-      
+
     end
   end
 end
